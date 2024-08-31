@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "Từ Vựng Extension",
+  "version": "1.0",
+  "description": "Dịch và ôn tập từ vựng",
+  "permissions": [
+    "contextMenus",
+    "storage",
+    "identity",
+    "activeTab",
+    "scripting"
+  ],
+  "icons": {
+    "16": "image/icon16.png",
+    "48": "image/icon48.png",
+    "128": "image/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "image/icon16.png",
+      "48": "image/icon48.png",
+      "128": "image/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ],
+  "options_page": "options.html"
+}
