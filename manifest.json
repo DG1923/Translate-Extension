@@ -34,8 +34,17 @@
       ],
       "js": [
         "content.js"
+      ],
+      "css":[
+        "content.css"
       ]
     }
   ],
-  "options_page": "options.html"
+  "options_page": "options.html",
+  "web_accessible_resources": [
+    {
+      "resources": ["image/icon32.png"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }

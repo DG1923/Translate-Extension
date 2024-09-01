@@ -20,6 +20,7 @@ const database = getDatabase(app);
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.sync.set({ sourceLang: 'en', targetLang: 'vi', words: [] });
+  chrome.storage.local.set({ sourceLang: 'en', targetLang: 'vi', words: [] });
   chrome.contextMenus.create({
     id: "translateWord",
     title: "Dịch '%s'",
