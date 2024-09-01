@@ -31,22 +31,88 @@ chrome.runtime.onInstalled.addListener(() => {
 
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.action == "translate") {
+  if (request.action === "translate") {
     translateWord(request.word, request.sourceLang, request.targetLang, sendResponse);
-    return true;//keep the message chanel open for sendResponse
-  } else if (request.action == "readData") {
+    return true;
+  }
+  if (request.action === "readData") {
     readData(sendResponse);
     return true;
-  } else if (request.action == "addData") {
+  }
+  if (request.action === "addData") {
     addData(request.word, request.meaning, sendResponse);
     return true;
   }
+  if (request.action === "updateData") {
+    updateDate(request.id, request.interval, request.repitation, request.easyFactor, request.nextReviewDate, sendResponse);
+    return true;
+  }
+
 });
+
+function updateDate(id, interval, repitation, easyFactor, nextReviewDate, sendResponse) {
+  const dbRef = ref(database, 'vocab/');
+  sendResponse({ success: true });
+  get(dbRef).then((snapshot) => {
+    if (snapshot.exists()) {
+      const data = snapshot.val();
+      let key_id = null;
+      for (let key in data) {
+        if (data[key].id === id) {
+          key_id = key;
+          break;
+        }
+      }
+      if (key_id !== null) {
+        update(ref(database, 'vocab/' + key_id), {
+          interval: parseInt(interval),
+          repitation: parseInt(repitation),
+          easyFactor: parseFloat(easyFactor),
+          nextReviewDate: nextReviewDate,
+        }).then(() => {
+          sendResponse({ success: true });
+        }).catch((error) => {
+          console.error("E-updateData: Update Error ", error);
+          sendResponse({ success: false, error: error.message });
+        });
+      }
+      // if (data.hasOwnProperty(id)) {
+      //   update(ref(database, 'vocab/' + id), {
+      //     interval: parseInt(interval),
+      //     repitation: parseInt(repitation),
+      //     easyFactor: parseFloat(easyFactor),
+      //     nextReviewDate: nextReviewDate,
+      //   }).then(() => {
+      //     sendResponse({success: true});
+      //   }).catch((error) => {
+      //     console.error("E-updateData: Update Error ", error);
+      //     sendResponse({success: false, error: error.message});
+      //   });
+      // } else {
+      //   console.log("E-updateData: invalid find id !");
+      //   sendResponse({success: false, error: "Invalid ID"});
+      // }
+    } else {
+      console.log("E-updateData: not found data !");
+      sendResponse({ success: false, error: "Data not found" });
+    }
+  }).catch((error) => {
+    console.error("E-updateData: Snapshot Error ", error);
+    sendResponse({ success: false, error: error.message });
+  });
+}
 function addData(word, meaning, sendResponse) {
   const dbRef = ref(database, 'vocab');
   const addNewWordRef = push(dbRef);
+  const id = 'Giap' + addNewWordRef.key;
   set(addNewWordRef, {
-    word: word, meaning: meaning
+    id: id,
+    word: word,
+    meaning: meaning,
+    interval: 0,
+    repitation: 0,
+    easyFactor: 2.5,
+    nextReviewDate: Date.now(),
   }).then(() => {
     sendResponse({
       success: true,

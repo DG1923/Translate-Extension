@@ -12,7 +12,15 @@ document.addEventListener('mouseup', function(){
   }
    
 });
-
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === "alert") {
+    alert(request.message);
+    sendResponse({
+      success: true,
+    })
+    return true;
+  }
+})
 function removeIcon(){
   const icons = document.querySelectorAll('.translate-icon');
   icons.forEach(icon => icon.remove());
