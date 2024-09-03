@@ -65,7 +65,6 @@ function handleSelection() {
     });
   }
 }
-
 function showPopup(meaning, word) {
   const selection = window.getSelection();
   const range = selection.getRangeAt(0);
@@ -76,7 +75,7 @@ function showPopup(meaning, word) {
   popup.style.top = `${rect.bottom + window.scrollY}px`;
   popup.className = 'translation-popup';
   popup.innerHTML = `
-    <p>Nghĩa là: ${meaning}</p>
+    <h3>${meaning}</h3>
     <button class = "btn-style" role="button" id="addToDict">Thêm vào từ điển</button>
   `;
   
@@ -92,6 +91,7 @@ function showPopup(meaning, word) {
     chrome.runtime.sendMessage({action:"addData", word: word, meaning: meaning}, function(response) {
       if(response.success){
         alert("Đã thêm thành công!");
+        
       }
     })
   });

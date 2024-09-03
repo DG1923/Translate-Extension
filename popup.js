@@ -1,4 +1,6 @@
 const TRANSLATE_API_URL = 'https://api.mymemory.translated.net/get';
+let vocab = '';
+let meaning = '';
 document.getElementById('reviewBtn').addEventListener('click', () => {
   chrome.tabs.create({ url: 'review.html' });
 });
@@ -13,8 +15,10 @@ document.getElementById('btnTranslate').addEventListener('click', function () {
       const targetLang = result.targetLang;
       chrome.runtime.sendMessage({action:"translate", word: word, sourceLang: sourceLang, targetLang: targetLang}, function(response) {
         if(response.success){
-          document.getElementById('meaning').textContent = response.meaning;
-          document.getElementById('doChinhXac').textContent = response.dochinhxac;
+          vocab = response.word;
+          meaning = response.meaning;
+          document.getElementById('meaning').value = response.meaning;
+          document.getElementById('doChinhXac').textContent =" Độ chính xác: "+ response.dochinhxac*100+"%";
         }
       });
     });
@@ -23,31 +27,14 @@ document.getElementById('btnTranslate').addEventListener('click', function () {
   }
 });
 
-document.getElementById('btnWriteData').addEventListener('click', function () {
-  const word = document.getElementById('wordInput').value;
-  const meaning = document.getElementById('meaning').textContent;
-  chrome.runtime.sendMessage({action:"addData", word: word, meaning: meaning}, function(response) {
-    if(response.success){
-      alert("Them thanh cong");
-    }
-  });
-});
 
-document.getElementById('readDataBtn').addEventListener('click', function () {
-  chrome.runtime.sendMessage({action:"readData"}, function(response) {
+document.getElementById('btnWriteData').addEventListener('click', function () {
+  chrome.runtime.sendMessage({action:"addData",word: vocab, meaning: meaning }, function(response) {
     if(response.success){
-      displayData(response.data);
+      document.getElementById('thongbao').textContent = "Thêm thành công";
+      setTimeout(() => {
+        document.getElementById('thongbao').textContent = "";
+      }, 2000);
     }
   });
 })
-function displayData(data) {
-  const resultDiv = document.getElementById('result');
-  resultDiv.innerHTML = '';
-  if (data) {
-      for (let key in data) {
-          resultDiv.innerHTML += `<p>Word: ${data[key].word}, Meaning: ${data[key].meaning}</p>`;
-      }
-  } else {
-      resultDiv.innerHTML = '<p>No data found</p>';
-  }
-}

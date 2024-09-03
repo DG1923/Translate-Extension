@@ -48,6 +48,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     return true;
   }
 
+
 });
 
 function updateDate(id, interval, repitation, easyFactor, nextReviewDate, sendResponse) {
@@ -76,22 +77,6 @@ function updateDate(id, interval, repitation, easyFactor, nextReviewDate, sendRe
           sendResponse({ success: false, error: error.message });
         });
       }
-      // if (data.hasOwnProperty(id)) {
-      //   update(ref(database, 'vocab/' + id), {
-      //     interval: parseInt(interval),
-      //     repitation: parseInt(repitation),
-      //     easyFactor: parseFloat(easyFactor),
-      //     nextReviewDate: nextReviewDate,
-      //   }).then(() => {
-      //     sendResponse({success: true});
-      //   }).catch((error) => {
-      //     console.error("E-updateData: Update Error ", error);
-      //     sendResponse({success: false, error: error.message});
-      //   });
-      // } else {
-      //   console.log("E-updateData: invalid find id !");
-      //   sendResponse({success: false, error: "Invalid ID"});
-      // }
     } else {
       console.log("E-updateData: not found data !");
       sendResponse({ success: false, error: "Data not found" });
@@ -112,7 +97,7 @@ function addData(word, meaning, sendResponse) {
     interval: 0,
     repitation: 0,
     easyFactor: 2.5,
-    nextReviewDate: Date.now(),
+    nextReviewDate: new Date(Date.now()).toISOString().split('T')[0],
   }).then(() => {
     sendResponse({
       success: true,

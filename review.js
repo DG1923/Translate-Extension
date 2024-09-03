@@ -55,7 +55,7 @@ function applySmAlgorithm(quality) {
     nextReviewDate:word.nextReviewDate}, 
       function(response) {
           if(response.success){
-            alert("Cap nhap thanh cong");
+            console.log("Update thanh cong !!!");
           }
   });
 }

@@ -2,6 +2,7 @@
   <html>
   <head>
     <title>Từ Vựng Extension</title>
+    <link rel="stylesheet" href="variables.css">
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
@@ -9,25 +10,78 @@
       button { display: block; width: 100%; margin: 10px 0; }
     </style>
   </head>
+  <style>
+    /* From Uiverse.io by kamehame-ha */ 
+.inputStyle {
+  display: flex;
+  flex-direction: column;
+  width:300px;
+  position: static;
+  overflow-wrap: break-word;
+  height: fit-content;
+}
+
+.inputStyle label.text {
+  font-size: 20px;
+  color: var(--dg-background-second-color);
+  font-weight: 700;
+  position: relative;
+  top: 0.5rem;
+  margin: 0 0 0 7px;
+  padding: 0 3px;
+  background: #ffffff;
+  width: fit-content;
+}
+
+.inputStyle textarea {
+  padding: 11px 10px;
+  font-size: 0.75rem;
+  border: 2px var(--dg-background-second-color) solid;
+  border-radius: 5px;
+  background: #ffffff;
+  height: 100px;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.headPupop {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footerTranslate {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+  </style>
   <body>
-    <button id="reviewBtn">Ôn tập từ vựng</button>
-    <button id="optionsBtn">Tùy chọn</button>
-    <div id="direct_translattion">  
-      <h1>nhập từ</h1>
 
-      <input type="text" id="wordInput" placeholder="Nhập từ của bạn ở đây">
+    <div class="container">
+      <div class="headPupop">
+        <button id="reviewBtn" class="buttonstyle">Ôn tập từ vựng</button>
 
-      <h1>Từ vựng</h1>
-
-      <div id ="doChinhXac"></div>
-
-      <div id="meaning"></div>
-
-      <div id="result"></div>
-      <button id="btnTranslate">Translate</button>  
-      <div id="readDataBtn"></div>
-      <button id="btnWriteData">Thêm từ vựng vào bộ dữ liệu</button>
+        <img src="image/icon_setting.png" alt="setting" height="30" class="optionsBtn" id="optionsBtn">
+      </div>
+      <div id="direct_translattion">  
+        <div class="inputStyle">
+          <label for="input" class="text">Word:</label>
+          <textarea type="text" placeholder="Write here..." name="input" class="input" id="wordInput"></textarea>
+          <label for="input" class="text">Meaning:</label>
+          <textarea type="text" placeholder="" name="input" class="input" id="meaning" style="pointer-events: none;"></textarea>
+        <div id ="doChinhXac"></div>
+        <div id="thongbao" style="color: var(--dg-background-second-color);"></div>
+        <div id="meaning"></div>
+      </div>
+      <div class="footerTranslate">
+        <button id="btnTranslate" class="buttonstyle">Translate</button>  
+        <button id="btnWriteData" class="buttonstyle">Thêm từ vựng</button>
+      </div>
     </div>
+
+
+    
+ 
     
   </body>
   <script type="module" src="./popup.js"></script>
