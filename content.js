@@ -42,6 +42,7 @@ function showIcon(){
   icon.addEventListener('click', function() {
     handleSelection();
   });
+
   
 }
 function handleSelection() {
@@ -75,7 +76,7 @@ function showPopup(meaning, word) {
   popup.style.top = `${rect.bottom + window.scrollY}px`;
   popup.className = 'translation-popup';
   popup.innerHTML = `
-    <h3>${meaning}</h3>
+    <h3 class= "popup-text">${meaning}</h3>
     <button class = "btn-style" role="button" id="addToDict">Thêm vào từ điển</button>
   `;
   

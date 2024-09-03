@@ -1,14 +1,15 @@
 @import url("./variables.css");
-h3{
+.popup-text{
   margin-bottom: 20px;
 }
+
 .translation-popup {
   position: absolute;
   background-color: var(--dg-background-main-color);
   border: 1px;
   border-radius: 10px;
   padding: 10px;
-  min-width: 300px;
+  min-width: 100px;
   max-width: 600px;
   height: fit-content;
   font-family: Arial, sans-serif;
