@@ -71,10 +71,10 @@ function loadWords() {
           meaning: value.meaning,
           interval: value.interval||0,
           repitation: value.repitation||0,
-          easyFactor: value.easyFactor||2.5,
+          easyFactor: Number(value.easyFactor)||2.5,
           nextReviewDate: value.nextReviewDate||Date.now(),
         })
-      )).filter(word => word.nextReviewDate === current_date);
+      )).filter(word => word.nextReviewDate <= current_date);
       showWord();
     } else {
       console.error('Không thể tải dữ liệu từ Firebase');

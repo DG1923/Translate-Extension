@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            width: 500px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar-container {
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            height: 10px;
+        }
+
+        .progress-bar {
+            background-color: #7cc576;
+            height: 10px;
+            width: 40%; /* Adjust this width to represent the progress */
+            transition: width 0.5s;
+        }
+
+        .question {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option {
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .option:hover {
+            background-color: #f1f1f1;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #007bff;
+            cursor: pointer;
+        }
+
+        .footer:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="progress-bar-container">
+        <div class="progress-bar"></div>
+    </div>
+    
+    <div class="question">1. Những nhân tố ổn định tự động của nền kinh tế là:</div>
+    
+    <div class="options">
+        <div class="option" onclick="selectOption(1)">1. Tỷ giá hối đoái</div>
+        <div class="option" onclick="selectOption(2)">2. Lãi suất và sản lượng cung ứng</div>
+        <div class="option" onclick="selectOption(3)">3. Thuế thu nhập lũy tiến và trợ cấp thất nghiệp</div>
+        <div class="option" onclick="selectOption(4)">4. Thuế thu nhập và trợ cấp</div>
+    </div>
+    
+    <div class="footer" onclick="showHint()">Bạn không biết?</div>
+</div>
+
+<script>
+    function selectOption(optionNumber) {
+        alert("You selected option " + optionNumber);
+        // Add any additional logic here, such as storing the answer, updating progress, etc.
+    }
+
+    function showHint() {
+        alert("Hint: Consider economic stabilizers.");
+    }
+</script>
+
+</body>
+</html>

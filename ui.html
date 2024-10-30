@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ôn tập</title>
+    <link rel="stylesheet" href="variables.css">
+
+</head>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        height: 100vh;
+        width: 100vw;
+    }
+    h1{
+        text-align: center;
+    }
+    .nav {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+    .button{
+        width: 100px;
+        height: 100px;
+        border: 0px solid #000;
+        border-radius: 10px;
+        background-color: red;
+        margin: 10px;
+        cursor: pointer;
+    }
+    .container{
+        display: grid;
+        grid-template-columns: 1fr 8fr;
+        justify-items: center;
+        gap: 20px;
+    }
+    .buttonstyle{
+        height: 100px;
+        width: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+        font-size: 20px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+    p{
+        margin: 0;
+    }
+    .flex{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+    }
+</style>
+<body>
+<h1>
+    Ôn tập
+</h1>
+    <div class="container">
+        <ul class="flex">
+            <li class="multiChoices buttonstyle">
+                <img src="./image/icon/learn.svg" alt="multiChoices" height="30px">
+                <div>Multi-Choices</div>
+            </li>
+            <li class="exam buttonstyle">
+                <img src="./image/icon/multichoice.svg" alt="multiChoices" height="30px">
+                <div>Exam </div>
+            </li>
+        </ul>
+        <div class="content">
+            <h2>Content</h2>
+        </div>
+    </div>
+</body>
+</html>
