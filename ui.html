@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,22 +9,31 @@
 
 </head>
 <style>
-    body{
+    a {
+        text-decoration: none;
+        color: black;
+
+    }
+
+    body {
         margin: 0;
         padding: 0;
         font-family: sans-serif;
         height: 100vh;
         width: 100vw;
     }
-    h1{
+
+    h1 {
         text-align: center;
     }
+
     .nav {
         display: flex;
         justify-content: space-between;
         flex-direction: column;
     }
-    .button{
+
+    .button {
         width: 100px;
         height: 100px;
         border: 0px solid #000;
@@ -32,13 +42,15 @@
         margin: 10px;
         cursor: pointer;
     }
-    .container{
+
+    .container {
         display: grid;
         grid-template-columns: 1fr 8fr;
         justify-items: center;
         gap: 20px;
     }
-    .buttonstyle{
+
+    .buttonstyle {
         height: 100px;
         width: 200px;
         display: flex;
@@ -50,35 +62,77 @@
         font-weight: 700;
         cursor: pointer;
     }
-    p{
+
+    p {
         margin: 0;
     }
-    .flex{
+
+    .flex {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
         gap: 20px;
     }
+    .flex-row{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        gap: 20px;
+    }
+    .piechart {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-image: conic-gradient(
+                pink 0deg 180deg,
+                lightblue 0
+            );
+    }
+    .rectangular{
+        width: 50px;
+        height: 50px;
+    }
+    .dahoc{
+        background-color: pink;
+    }
+    .chuahoc{
+        background-color: lightblue;
+    }
 </style>
+
 <body>
-<h1>
-    Ôn tập
-</h1>
+    <h1>
+        Ôn tập
+    </h1>
     <div class="container">
         <ul class="flex">
-            <li class="multiChoices buttonstyle">
-                <img src="./image/icon/learn.svg" alt="multiChoices" height="30px">
-                <div>Multi-Choices</div>
-            </li>
-            <li class="exam buttonstyle">
+            <li class="multiChoices buttonstyle" onclick="location.href='./multiChoices.html'">
                 <img src="./image/icon/multichoice.svg" alt="multiChoices" height="30px">
-                <div>Exam </div>
+                <div>
+                    MultiChoices
+                </div>
+            </li>
+            <li class="exam buttonstyle" onclick="location.href='./exam.html'">
+                <img src="./image/icon/multichoice.svg" alt="multiChoices" height="30px">
+                <div>
+                    Exam
+                </div>
             </li>
         </ul>
         <div class="content">
-            <h2>Content</h2>
+            <div class="piechart"></div>
+            <div class="flex-row" style="height: 100px;width: 100px;">
+                <div class="rectangular dahoc"></div> 
+                <p>Đã học </p>
+            </div>
+            <div class="flex-row"  style="height: 100px;width: 100px;">
+                <div class="rectangular chuahoc"></div> 
+                <p>Chưa học</p>
+            </div>
         </div>
     </div>
 </body>
+
 </html>
