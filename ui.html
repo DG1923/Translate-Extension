@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ôn tập</title>
     <link rel="stylesheet" href="variables.css">
-
 </head>
 <style>
     a {
@@ -100,8 +99,33 @@
     .chuahoc{
         background-color: lightblue;
     }
-</style>
+    .flashcards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
+.flashcard {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+}
+
+.flashcard .answer {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #333;
+}
+</style>
+<script>
+    // Thêm đoạn mã JavaScript này vào cuối file hoặc trong một file script riêng
+function showAnswer(card) {
+    const answer = card.querySelector('.answer');
+    answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
+}
+</script>
 <body>
     <h1>
         Ôn tập
@@ -121,7 +145,141 @@
                 </div>
             </li>
         </ul>
-        <div class="content">
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Học Từ Vựng</title>
+    <style>
+        /* Giữ nguyên các style cũ */
+        
+        /* Thêm style mới cho từ vựng */
+        .vocabulary-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .vocabulary-card {
+            width: 300px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .vocabulary-word {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .vocabulary-meaning {
+            font-size: 18px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .vocabulary-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-know {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .btn-unknown {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .quiz-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .quiz-question {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .quiz-option {
+            width: 300px;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .quiz-option:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Phần Học Từ Vựng -->
+        <div class="vocabulary-container">
+            <div class="vocabulary-card">
+                <div class="vocabulary-word">Hello</div>
+                <div class="vocabulary-meaning">Xin chào</div>
+            </div>
+            
+            <div class="vocabulary-buttons">
+                <button class="btn btn-know">Đã Biết</button>
+                <button class="btn btn-unknown">Chưa Biết</button>
+            </div>
+        </div>
+
+        <!-- Phần Trắc Nghiệm -->
+        <div class="quiz-section">
+            <div class="quiz-question">
+                Từ "Hello" có nghĩa là gì?
+            </div>
+            <div class="quiz-options">
+                <div class="quiz-option">Tạm biệt</div>
+                <div class="quiz-option">Xin chào</div>
+                <div class="quiz-option">Cảm ơn</div>
+                <div class="quiz-option">Xin lỗi</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Thêm JavaScript để quản lý việc học từ vựng
+        function handleVocabularyLearning() {
+            // Logic chuyển từ, theo dõi từ đã học
+        }
+
+        function checkQuizAnswer() {
+            // Logic kiểm tra câu trả lời
+        }
+    </script>
+</body>
+</html><div class="content">
             <div class="piechart"></div>
             <div class="flex-row" style="height: 100px;width: 100px;">
                 <div class="rectangular dahoc"></div> 
@@ -130,6 +288,16 @@
             <div class="flex-row"  style="height: 100px;width: 100px;">
                 <div class="rectangular chuahoc"></div> 
                 <p>Chưa học</p>
+            </div>
+            <div class="flashcards">
+                <div class="flashcard" onclick="showAnswer(this)">
+                    <div class="question">Câu hỏi 1: Định nghĩa của HTML là gì?</div>
+                    <div class="answer" style="display: none;">HTML là ngôn ngữ đánh dấu siêu văn bản.</div>
+                </div>
+                <div class="flashcard" onclick="showAnswer(this)">
+                    <div class="question">Câu hỏi 2: CSS dùng để làm gì?</div>
+                    <div class="answer" style="display: none;">CSS đ�ợc sử dụng để định dạng và bố trí các trang web.</div>
+                </div>
             </div>
         </div>
     </div>

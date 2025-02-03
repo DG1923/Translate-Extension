@@ -27,7 +27,17 @@ document.getElementById('btnTranslate').addEventListener('click', function () {
   }
 });
 
-
+document.getElementById('btnTestAPI').addEventListener('click', function () {
+  const word = document.getElementById('wordInput').value;
+  if (word !== '') {
+    chrome.runtime.sendMessage({
+      action:"apiLLM",
+      textInput:word,
+    },function(response) {
+      document.getElementById('meaning').value =response.output;
+    })
+  }
+});
 document.getElementById('btnWriteData').addEventListener('click', function () {
   chrome.runtime.sendMessage({action:"addData",word: vocab, meaning: meaning }, function(response) {
     if(response.success){

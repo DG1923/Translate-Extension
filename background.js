@@ -1,5 +1,34 @@
 const TRANSLATE_API_URL = 'https://api.mymemory.translated.net/get';
+import { OpenAI } from "openai";
 
+const client = new OpenAI({
+    baseURL: "https://api-inference.huggingface.co/v1/",
+    apiKey: "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"
+});
+const MODEL = "meta-llama/Llama-3.2-11B-Vision-Instruct";
+const chatCompletion = await client.chat.completions.create({
+	model: "meta-llama/Llama-3.2-11B-Vision-Instruct",
+	messages: [
+		{
+			role: "user",
+			content: [
+				{
+					type: "text",
+					text: "Describe this image in one sentence."
+				},
+				{
+					type: "image_url",
+					image_url: {
+						url: "https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg"
+					}
+				}
+			]
+		}
+	],
+	max_tokens: 500
+});
+
+console.log(chatCompletion.choices[0].message);
 //<-------------------------Config Firebase----------------------->
 import { ref, onValue, push, set, get, update } from "./firebase/firebaseDatabase.js";
 import { initializeApp } from "./firebase/firebaseapp.js";
@@ -47,9 +76,39 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     updateDate(request.id, request.interval, request.repitation, request.easyFactor, request.nextReviewDate, sendResponse);
     return true;
   }
+  if (request.action === "apiLLM") {
+    handleApiLLM(request.textInput, sendResponse);
+    return true;
+  }
 
 
 });
+async function handleApiLLM(textInput, sendResponse) {
+  try {
+    const response = await client.chat.completions.create({
+      model: MODEL,
+      messages: [
+        {
+          role: "user",
+          content: textInput
+        }
+      ],
+      max_tokens: 500
+    });
+    
+    sendResponse({
+      success: true,
+      output: response.choices[0].message.content
+    });
+  } catch (error) {
+    console.error('API Error:', error);
+    sendResponse({
+      success: false,
+      output: error.message || 'An error occurred'
+    });
+  }
+}
+
 
 function updateDate(id, interval, repitation, easyFactor, nextReviewDate, sendResponse) {
   const dbRef = ref(database, 'vocab/');
